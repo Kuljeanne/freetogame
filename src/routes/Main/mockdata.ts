@@ -1,6 +1,6 @@
 export const GAMES = [
   {
-    id: 540,
+    id: 5400,
     title: "Overwatch 2",
     thumbnail: "https://www.freetogame.com/g/540/thumbnail.jpg",
     short_description:
@@ -14,7 +14,7 @@ export const GAMES = [
     freetogame_profile_url: "https://www.freetogame.com/overwatch-2",
   },
   {
-    id: 521,
+    id: 5210,
     title: "Diablo Immortal",
     thumbnail: "https://www.freetogame.com/g/521/thumbnail.jpg",
     short_description:
@@ -28,7 +28,7 @@ export const GAMES = [
     freetogame_profile_url: "https://www.freetogame.com/diablo-immortal",
   },
   {
-    id: 517,
+    id: 5170,
     title: "Lost Ark",
     thumbnail: "https://www.freetogame.com/g/517/thumbnail.jpg",
     short_description:
@@ -42,7 +42,7 @@ export const GAMES = [
     freetogame_profile_url: "https://www.freetogame.com/lost-ark",
   },
   {
-    id: 516,
+    id: 5160,
     title: "PUBG: BATTLEGROUNDS",
     thumbnail: "https://www.freetogame.com/g/516/thumbnail.jpg",
     short_description:
@@ -56,7 +56,7 @@ export const GAMES = [
     freetogame_profile_url: "https://www.freetogame.com/pubg",
   },
   {
-    id: 508,
+    id: 5080,
     title: "Enlisted",
     thumbnail: "https://www.freetogame.com/g/508/thumbnail.jpg",
     short_description:
@@ -70,7 +70,7 @@ export const GAMES = [
     freetogame_profile_url: "https://www.freetogame.com/enlisted",
   },
   {
-    id: 540,
+    id: 5401,
     title: "Overwatch 2",
     thumbnail: "https://www.freetogame.com/g/540/thumbnail.jpg",
     short_description:
@@ -84,7 +84,7 @@ export const GAMES = [
     freetogame_profile_url: "https://www.freetogame.com/overwatch-2",
   },
   {
-    id: 521,
+    id: 5211,
     title: "Diablo Immortal",
     thumbnail: "https://www.freetogame.com/g/521/thumbnail.jpg",
     short_description:
@@ -98,7 +98,7 @@ export const GAMES = [
     freetogame_profile_url: "https://www.freetogame.com/diablo-immortal",
   },
   {
-    id: 517,
+    id: 5171,
     title: "Lost Ark",
     thumbnail: "https://www.freetogame.com/g/517/thumbnail.jpg",
     short_description:
@@ -112,7 +112,7 @@ export const GAMES = [
     freetogame_profile_url: "https://www.freetogame.com/lost-ark",
   },
   {
-    id: 516,
+    id: 5161,
     title: "PUBG: BATTLEGROUNDS",
     thumbnail: "https://www.freetogame.com/g/516/thumbnail.jpg",
     short_description:
@@ -126,7 +126,7 @@ export const GAMES = [
     freetogame_profile_url: "https://www.freetogame.com/pubg",
   },
   {
-    id: 508,
+    id: 5081,
     title: "Enlisted",
     thumbnail: "https://www.freetogame.com/g/508/thumbnail.jpg",
     short_description:
@@ -140,7 +140,7 @@ export const GAMES = [
     freetogame_profile_url: "https://www.freetogame.com/enlisted",
   },
   {
-    id: 540,
+    id: 5402,
     title: "Overwatch 2",
     thumbnail: "https://www.freetogame.com/g/540/thumbnail.jpg",
     short_description:
@@ -154,7 +154,7 @@ export const GAMES = [
     freetogame_profile_url: "https://www.freetogame.com/overwatch-2",
   },
   {
-    id: 521,
+    id: 5212,
     title: "Diablo Immortal",
     thumbnail: "https://www.freetogame.com/g/521/thumbnail.jpg",
     short_description:
@@ -168,7 +168,7 @@ export const GAMES = [
     freetogame_profile_url: "https://www.freetogame.com/diablo-immortal",
   },
   {
-    id: 517,
+    id: 5172,
     title: "Lost Ark",
     thumbnail: "https://www.freetogame.com/g/517/thumbnail.jpg",
     short_description:
@@ -182,7 +182,7 @@ export const GAMES = [
     freetogame_profile_url: "https://www.freetogame.com/lost-ark",
   },
   {
-    id: 516,
+    id: 5162,
     title: "PUBG: BATTLEGROUNDS",
     thumbnail: "https://www.freetogame.com/g/516/thumbnail.jpg",
     short_description:
@@ -196,7 +196,7 @@ export const GAMES = [
     freetogame_profile_url: "https://www.freetogame.com/pubg",
   },
   {
-    id: 508,
+    id: 5082,
     title: "Enlisted",
     thumbnail: "https://www.freetogame.com/g/508/thumbnail.jpg",
     short_description:
@@ -210,7 +210,7 @@ export const GAMES = [
     freetogame_profile_url: "https://www.freetogame.com/enlisted",
   },
   {
-    id: 540,
+    id: 5403,
     title: "Overwatch 2",
     thumbnail: "https://www.freetogame.com/g/540/thumbnail.jpg",
     short_description:
@@ -224,7 +224,7 @@ export const GAMES = [
     freetogame_profile_url: "https://www.freetogame.com/overwatch-2",
   },
   {
-    id: 521,
+    id: 5214,
     title: "Diablo Immortal",
     thumbnail: "https://www.freetogame.com/g/521/thumbnail.jpg",
     short_description:
@@ -238,7 +238,7 @@ export const GAMES = [
     freetogame_profile_url: "https://www.freetogame.com/diablo-immortal",
   },
   {
-    id: 517,
+    id: 5174,
     title: "Lost Ark",
     thumbnail: "https://www.freetogame.com/g/517/thumbnail.jpg",
     short_description:
@@ -252,7 +252,7 @@ export const GAMES = [
     freetogame_profile_url: "https://www.freetogame.com/lost-ark",
   },
   {
-    id: 516,
+    id: 5164,
     title: "PUBG: BATTLEGROUNDS",
     thumbnail: "https://www.freetogame.com/g/516/thumbnail.jpg",
     short_description:
@@ -266,7 +266,7 @@ export const GAMES = [
     freetogame_profile_url: "https://www.freetogame.com/pubg",
   },
   {
-    id: 508,
+    id: 5084,
     title: "Enlisted",
     thumbnail: "https://www.freetogame.com/g/508/thumbnail.jpg",
     short_description:

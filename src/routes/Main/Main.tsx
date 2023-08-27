@@ -17,6 +17,7 @@ export const Main = () => {
               ({ id, title, genre, publisher, thumbnail, release_date }) => (
                 <GameCard
                   key={id}
+                  id={id}
                   title={title}
                   genre={genre}
                   imgSrc={thumbnail}

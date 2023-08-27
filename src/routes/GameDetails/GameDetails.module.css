@@ -1,0 +1,30 @@
+.container {
+  padding-top: 2.4rem;
+}
+
+.btn {
+  color: inherit;
+  background-color: transparent;
+  margin-bottom: 2rem;
+}
+
+.details {
+  display: flex;
+  gap: 2rem;
+}
+
+.play {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  > img {
+    border-radius: 4px;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  max-width: 65%;
+}

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import styles from "./GameCard.module.css";
 
 type GameCardProps = {
+  id:number;
   title: string;
   genre: string;
   imgSrc: string;
@@ -12,6 +13,7 @@ type GameCardProps = {
 };
 
 export const GameCard = ({
+  id,
   title,
   genre,
   imgSrc,
@@ -19,7 +21,7 @@ export const GameCard = ({
   releaseDate,
 }: GameCardProps) => {
   return (
-    <Link to="#" className={styles.card}>
+    <Link to={`${id}`} className={styles.card}>
       <div
         style={{
           backgroundImage: `url(${imgSrc})`,
