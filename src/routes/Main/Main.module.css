@@ -1,3 +1,28 @@
 .container {
-  padding-top: 24px;
+  padding-top: 2.4rem;
+}
+
+.games {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(4, auto);
+}
+
+@media (max-width: 1100px) {
+  .games {
+    grid-template-columns: repeat(3, auto);
+  }
+}
+
+@media (max-width: 820px) {
+  .games {
+    grid-template-columns: repeat(2, auto);
+  }
+}
+
+@media (max-width: 560px) {
+  .games {
+    grid-template-columns: repeat(1, auto);
+    justify-content: center;
+  }
 }

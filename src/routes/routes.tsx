@@ -1,10 +1,13 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
-import Main from "./Main";
-import GameDetails from "./GameDetails";
+
 import App from "../App";
 
+import Main from "./Main";
+import GameDetails from "./GameDetails";
+import NotFound from "./NotFound";
+
 export const router = createBrowserRouter([
-  { path: '/', element: <Navigate to="/games" /> },
+  { path: "/", element: <Navigate to="/games" /> },
   {
     path: "/games",
     element: <App />,
@@ -13,4 +16,5 @@ export const router = createBrowserRouter([
       { path: ":gameName", element: <GameDetails /> },
     ],
   },
+  { path: "*", element: <NotFound /> },
 ]);
