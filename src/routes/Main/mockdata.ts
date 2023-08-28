@@ -280,3 +280,7 @@ export const GAMES = [
     freetogame_profile_url: "https://www.freetogame.com/enlisted",
   },
 ];
+
+export const PLATFORMS = ["PC (Windows)", "Browser (Web)", "All Platforms"];
+export const GENRES = ["Shooter", "ARPG", "MMOARPG", "All Genres"];
+export const SORT = ["Relevance", "Popularity", "Release Date", "Alphabetical"];

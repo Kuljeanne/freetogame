@@ -22,3 +22,24 @@ body {
   padding: 0 1.5rem;
   margin: 0 auto;
 }
+
+.ant-select:not(.ant-select-customize-input) .ant-select-selector {
+  background-color: inherit;
+  border-color: inherit;
+}
+
+.ant-select:not(.ant-select-customize-input) .ant-select-selection-item {
+  color: rgb(189, 198, 207)
+}
+
+.ant-select-item.ant-select-item-option {
+  color: rgb(189, 198, 207)
+}
+
+.ant-select-item.ant-select-item-option.ant-select-item-option-disabled {
+  color: rgb(122, 130, 130);
+}
+
+.ant-select .ant-select-arrow {
+  color: rgb(189, 198, 207)
+}
