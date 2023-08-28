@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import cn from "classnames";
 
 import GameCard from "../../components/GameCard";
@@ -8,10 +8,27 @@ import Filter from "../../components/Filter";
 import styles from "./Main.module.css";
 import { GAMES, GENRES, PLATFORMS, SORT } from "./mockdata";
 
+const defaultValues = {
+  platform: "All Platforms",
+  genre: "All Genres",
+  sort: "Relevance",
+};
+
 export const Main = () => {
-  const handleChange = (value: string) => {
-    console.log(`selected ${value}`);
+  const [filters, setFilters] = useState(defaultValues);
+
+  const handlePlatformChange = (value: string) => {
+    setFilters({ ...filters, platform: value });
   };
+
+  const handleGenreChange = (value: string) => {
+    setFilters({ ...filters, genre: value });
+  };
+
+  const handleSortChange = (value: string) => {
+    setFilters({ ...filters, sort: value });
+  };
+
   return (
     <div className={cn(styles.container, "wrapper")}>
       <div className={styles.filters}>
@@ -19,22 +36,22 @@ export const Main = () => {
           type="Browse"
           filterName="Platform"
           options={PLATFORMS}
-          defaultValue="All Platforms"
-          onChange={handleChange}
+          defaultValue={defaultValues.platform}
+          onChange={handlePlatformChange}
         />
         <Filter
           type="Browse"
           filterName="Genre/Tag"
           options={GENRES}
-          defaultValue="All Genres"
-          onChange={handleChange}
+          defaultValue={defaultValues.genre}
+          onChange={handleGenreChange}
         />
         <Filter
           type="Sort"
           filterName="Sort By"
           options={SORT}
-          defaultValue="Relevance"
-          onChange={handleChange}
+          defaultValue={defaultValues.sort}
+          onChange={handleSortChange}
         />
       </div>
       <div className={styles.games}>
