@@ -13,23 +13,29 @@ export const GameDetails = () => {
   return (
     <div className={cn(styles.container, "wrapper")}>
       <div className={styles.details}>
-        <div className={styles.play}>
-          <img src={GAME.thumbnail} alt={GAME.title} />
-          <Button href={GAME.game_url} target="_blank" type="primary">
-            PLAY NOW <RightCircleOutlined />
-          </Button>
-          <Button className={styles.btn} type="default">
+        <div className={styles.stickyContainer}>
+          <div className={styles.play}>
+            <img src={GAME.thumbnail} alt={GAME.title} />
+            <Button href={GAME.game_url} target="_blank" type="primary">
+              PLAY NOW <RightCircleOutlined />
+            </Button>
             <Link to="/games">
-              <ArrowLeftOutlined />
-              Back to the games' list
+              <Button className={styles.btn} type="default">
+                <ArrowLeftOutlined />
+                Back to the games' list
+              </Button>
             </Link>
-          </Button>
+          </div>
         </div>
+
         <div className={styles.info}>
-          <h2 className={styles.title}>{GAME.title}</h2>
+          <div className={styles.infoBlock}>
+            <h1 className={styles.title}>{GAME.title}</h1>
+            <p className={styles.short}>{GAME.short_description}</p>
+          </div>
           <div className={styles.infoBlock}>
             <h4 className={styles.subtitle}>About {GAME.title}</h4>
-            <p className={styles.about}>{GAME.description}</p>
+            <p className={styles.desc}>{GAME.description}</p>
           </div>
           <div className={styles.infoBlock}>
             <h4 className={styles.subtitle}>{GAME.title} Screenshots</h4>
@@ -42,24 +48,30 @@ export const GameDetails = () => {
           </div>
           <div className={styles.infoBlock}>
             <h4 className={styles.subtitle}>Additional Information</h4>
-            <ul className={styles.addInfo}>
+            <ul className={cn(styles.addInfo, styles.list)}>
               <li className={styles.about}>
-                Title <span>{GAME.title}</span>
+                <span>Title </span>
+                {GAME.title}
               </li>
               <li className={styles.about}>
-                Developer <span>{GAME.developer}</span>
+                <span>Developer </span>
+                {GAME.developer}
               </li>
               <li className={styles.about}>
-                Publisher <span>{GAME.publisher}</span>
+                <span>Publisher </span>
+                {GAME.publisher}
               </li>
               <li className={styles.about}>
-                Release Date <span>{datePerse(GAME.release_date)}</span>
+                <span>Release Date </span>
+                {datePerse(GAME.release_date)}
               </li>
               <li className={styles.about}>
-                Genre <span>{GAME.genre}</span>
+                <span>Genre </span>
+                {GAME.genre}
               </li>
               <li className={styles.about}>
-                Platform <span>{GAME.platform}</span>
+                <span>Platform </span>
+                {GAME.platform}
               </li>
             </ul>
           </div>
@@ -67,22 +79,22 @@ export const GameDetails = () => {
             <h4 className={styles.subtitle}>
               Minimum System Requirements <span>({GAME.platform})</span>
             </h4>
-            <ul className={styles.addInfo}>
+            <ul className={cn(styles.list, styles.system)}>
               <li className={styles.about}>
-                OS <span>{GAME.minimum_system_requirements.os}</span>
+                <span>OS </span>
+                {GAME.minimum_system_requirements.os}
               </li>
               <li className={styles.about}>
-                Processor{" "}
-                <span>{GAME.minimum_system_requirements.processor}</span>
+                <span>Processor </span>
+                {GAME.minimum_system_requirements.processor}
               </li>
               <li className={styles.about}>
-                Memory <span>{GAME.minimum_system_requirements.memory}</span>
+                <span>Memory </span>
+                {GAME.minimum_system_requirements.memory}
               </li>
               <li className={styles.about}>
-                Graphics{" "}
-                <span>
-                  {datePerse(GAME.minimum_system_requirements.graphics)}
-                </span>
+                <span>Graphics </span>
+                {datePerse(GAME.minimum_system_requirements.graphics)}
               </li>
               <li className={styles.about}>
                 Storage <span>{GAME.minimum_system_requirements.storage}</span>
