@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import cn from "classnames";
 import { Pagination } from "antd";
 
 import GameCard from "../../components/GameCard";
 import { datePerse } from "../../utils";
 import Filter from "../../components/Filter";
+import { IGame } from "../../types";
 
 import styles from "./Main.module.css";
 import { GAMES, GENRES, PLATFORMS, SORT } from "./mockdata";
@@ -29,19 +30,23 @@ export const Main = () => {
   const handleSortChange = (value: string) => {
     setFilters({ ...filters, sort: value });
   };
+  
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(12);
-  const [games, setGames] = useState(GAMES.slice(page - 1, perPage));
+  const [games, setGames] = useState<IGame[]>([]);
 
   const pageChangeHandler = (page: number, pageSize: number) => {
-    const start = (page - 1) * pageSize;
-    const end = start + pageSize;
-    setGames(GAMES.slice(start, end));
     setPage(page);
     setPerPage(pageSize);
   };
 
-    return (
+  useEffect(() => {
+    const start = (page - 1) * perPage;
+    const end = start + perPage;
+    setGames(GAMES.slice(start, end));
+  }, [perPage, page]);
+
+  return (
     <div className={cn(styles.container, "wrapper")}>
       <div className={styles.filters}>
         <Filter
