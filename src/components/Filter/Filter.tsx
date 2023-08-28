@@ -5,7 +5,7 @@ import styles from "./Filter.module.css";
 
 type FilterProos = {
   type: "Browse" | "Sort";
-  filterName: string;
+  filterName?: string;
   options: string[];
   defaultValue: string;
   onChange: (value: string) => void;

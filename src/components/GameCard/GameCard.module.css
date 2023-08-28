@@ -4,7 +4,7 @@
   background-color: rgb(50, 56, 62);
   border-radius: 4px;
   min-width: 260px;
-  height: 260px;
+  height: 280px;
   color: inherit;
 }
 
@@ -23,7 +23,7 @@
 }
 
 .info {
-  padding: 10px 20px;
+  padding: .5rem 2rem;
 }
 
 .title {
@@ -33,7 +33,7 @@
 }
 
 .data {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-style: italic;
 
   >span {

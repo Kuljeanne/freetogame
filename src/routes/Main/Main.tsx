@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import cn from "classnames";
+import { Pagination } from "antd";
 
 import GameCard from "../../components/GameCard";
 import { datePerse } from "../../utils";
@@ -28,6 +29,18 @@ export const Main = () => {
   const handleSortChange = (value: string) => {
     setFilters({ ...filters, sort: value });
   };
+  const [page, setPage] = useState(1)
+  const [perPage, setPerPage] = useState(12)
+  const [games, setGames] = useState(GAMES.slice(page-1, perPage));
+
+  const pageChangeHandler = (page: number, pageSize: number) => {
+    const start = (page - 1) * pageSize;
+    const end = start + pageSize;
+    setGames(GAMES.slice(start, end));
+    setPage(page)
+    setPerPage(pageSize)
+
+  };
 
   return (
     <div className={cn(styles.container, "wrapper")}>
@@ -55,8 +68,8 @@ export const Main = () => {
         />
       </div>
       <div className={styles.games}>
-        {GAMES.length > 0
-          ? GAMES.map(
+        {games.length > 0
+          ? games.map(
               ({ id, title, genre, publisher, thumbnail, release_date }) => (
                 <GameCard
                   key={id}
@@ -71,6 +84,15 @@ export const Main = () => {
             )
           : null}
       </div>
+      <Pagination
+        responsive
+        hideOnSinglePage
+        onChange={pageChangeHandler}
+        className={styles.pagination}
+        pageSizeOptions={[12, 20, 28, 36, 44]}
+        defaultPageSize={perPage}
+        total={GAMES.length}
+      />
     </div>
   );
 };

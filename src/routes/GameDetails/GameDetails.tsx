@@ -2,7 +2,7 @@ import React from "react";
 import cn from "classnames";
 import { Button, Carousel } from "antd";
 import { ArrowLeftOutlined, RightCircleOutlined } from "@ant-design/icons";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { datePerse } from "../../utils";
 import Footer from "../../components/Footer";
@@ -11,6 +11,12 @@ import styles from "./GameDetails.module.css";
 import { GAME } from "./mockdata";
 
 export const GameDetails = () => {
+  const navigate = useNavigate();
+
+  const handleBackBtn = () => {
+    navigate(-1);
+  };
+
   return (
     <>
       <div className={cn(styles.container, "wrapper")}>
@@ -18,15 +24,22 @@ export const GameDetails = () => {
           <div className={styles.stickyContainer}>
             <div className={styles.play}>
               <img src={GAME.thumbnail} alt={GAME.title} />
-              <Button href={GAME.game_url} target="_blank" type="primary">
+              <Button
+                style={{ boxShadow: "none" }}
+                href={GAME.game_url}
+                target="_blank"
+                type="primary"
+              >
                 PLAY NOW <RightCircleOutlined />
               </Button>
-              <Link to="/games">
-                <Button className={styles.btn} type="default">
-                  <ArrowLeftOutlined />
-                  Back to the games' list
-                </Button>
-              </Link>
+              <Button
+                onClick={handleBackBtn}
+                className={styles.btn}
+                type="default"
+              >
+                <ArrowLeftOutlined />
+                Back to the games' list
+              </Button>
             </div>
           </div>
           <div className={styles.info}>
