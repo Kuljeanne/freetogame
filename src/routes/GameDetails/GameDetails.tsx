@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import cn from "classnames";
 import { Button, Carousel } from "antd";
 import { ArrowLeftOutlined, RightCircleOutlined } from "@ant-design/icons";
@@ -16,6 +16,10 @@ export const GameDetails = () => {
   const handleBackBtn = () => {
     navigate(-1);
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>
