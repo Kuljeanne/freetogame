@@ -10,6 +10,7 @@ type FilterProos = {
   filterName?: string;
   options: typeof PLATFORMS | typeof TAGS | typeof SORT;
   defaultValue: string;
+  loading: boolean;
   onChange: (value: string) => void;
 };
 
@@ -18,6 +19,7 @@ export const Filter = ({
   filterName,
   defaultValue,
   options,
+  loading,
   onChange,
 }: FilterProos) => {
   const validOptions = (Object.keys(options) as (keyof typeof options)[]).map(
@@ -36,6 +38,7 @@ export const Filter = ({
         dropdownStyle={{ backgroundColor: "rgb(50, 56, 62)" }}
         popupMatchSelectWidth={false}
         onChange={onChange}
+        loading={loading}
         options={[
           {
             value: "disabled",

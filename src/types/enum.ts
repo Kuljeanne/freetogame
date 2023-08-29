@@ -1,5 +1,4 @@
 export enum TAGS {
-  "All Genres" = " ",
   MMORPG = "mmorpg",
   Shooter = "shooter",
   strategy = "strategy",

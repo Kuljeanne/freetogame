@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-import { IGame, IGameDetails } from "../../types/types";
+import { FILTER_PARAMS, IGame, IGameDetails } from "../../types/types";
 
 export const gamesApi = createApi({
   reducerPath: "gamesApi",
@@ -14,11 +14,6 @@ export const gamesApi = createApi({
     },
   }),
   endpoints: (build) => ({
-    getGamesList: build.query<IGame[], void>({
-      query: () => ({
-        url: "/games",
-      }),
-    }),
     getGameById: build.query<IGameDetails, number>({
       query: (id) => ({
         url: "/game",
@@ -27,17 +22,17 @@ export const gamesApi = createApi({
         },
       }),
     }),
-    // getGamesFiltered: build.query<IGameDetails, any>({
-    //   query: () => ({
-    //     url: "/games",
-    //     params: {
-    //       platform='',
-    //       category='',
-    //       ['sort-by']
-    //     },
-    //   }),
-    // }),
+    getGames: build.query<IGame[], FILTER_PARAMS>({
+      query: (filters) => ({
+        url: "/games",
+        params: {
+          platform: filters.platform,
+          category: filters.category,
+          "sort-by": filters["sort-by"],
+        },
+      }),
+    }),
   }),
 });
 
-export const { useGetGamesListQuery, useGetGameByIdQuery } = gamesApi;
+export const { useGetGameByIdQuery, useGetGamesQuery } = gamesApi;

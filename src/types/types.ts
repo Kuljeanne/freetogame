@@ -26,7 +26,7 @@ export interface IGameDetails extends IGame {
 }
 
 export type FILTER_PARAMS = {
-  platform: PLATFORMS | string;
-  category: TAGS | string;
-  ["sort-by"]: SORT | string;
+  platform?: PLATFORMS | string;
+  category?: TAGS | string;
+  ["sort-by"]?: SORT | string;
 };
