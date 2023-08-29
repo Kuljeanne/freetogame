@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import cn from "classnames";
-import { Pagination } from "antd";
 
-import GameCard from "../../components/GameCard";
-import { datePerse } from "../../utils";
 import Filter from "../../components/Filter";
-import { FILTER_PARAMS, IGame } from "../../types/types";
+import { FILTER_PARAMS } from "../../types/types";
 import { useGetGamesListQuery } from "../../store/api";
 import { PLATFORMS, SORT, TAGS } from "../../types/enum";
+import PaginatedList from "../../components/PaginatedList";
 
 import styles from "./Main.module.css";
 
@@ -32,21 +30,6 @@ export const Main = () => {
   const handleSortChange = (value: string) => {
     setFilters({ ...filters, "sort-by": value });
   };
-
-  const [page, setPage] = useState(1);
-  const [perPage, setPerPage] = useState(12);
-  const [games, setGames] = useState<IGame[]>([]);
-
-  const pageChangeHandler = (page: number, pageSize: number) => {
-    setPage(page);
-    setPerPage(pageSize);
-  };
-
-  useEffect(() => {
-    const start = (page - 1) * perPage;
-    const end = start + perPage;
-    setGames(data?.slice(start, end) || []);
-  }, [data, perPage, page]);
 
   return (
     <div className={cn(styles.container, "wrapper")}>
@@ -73,36 +56,7 @@ export const Main = () => {
           onChange={handleSortChange}
         />
       </div>
-      {!isLoading && (
-        <div className={styles.games}>
-          {games.length > 0
-            ? games.map(
-                ({ id, title, genre, publisher, thumbnail, release_date }) => (
-                  <GameCard
-                    key={id}
-                    id={id}
-                    title={title}
-                    genre={genre}
-                    imgSrc={thumbnail}
-                    publisher={publisher}
-                    releaseDate={datePerse(release_date)}
-                  />
-                )
-              )
-            : null}
-        </div>
-      )}
-
-      <Pagination
-        responsive
-        hideOnSinglePage
-        onChange={pageChangeHandler}
-        className={styles.pagination}
-        pageSizeOptions={[12, 20, 28, 36, 44]}
-        defaultPageSize={perPage}
-        defaultCurrent={page}
-        total={data?.length}
-      />
+      {data && <PaginatedList data={data} />}
     </div>
   );
 };
