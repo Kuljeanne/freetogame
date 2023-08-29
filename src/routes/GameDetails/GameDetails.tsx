@@ -37,6 +37,12 @@ export const GameDetails = () => {
   return (
     <>
       <div className={cn(styles.container, "wrapper")}>
+        <div
+          className={styles.background}
+          style={{ background: `url(${screenshots[0].image})` }}
+        >
+          <div className={styles.gradient}></div>
+        </div>
         <GameInfo
           id={id}
           title={title}
