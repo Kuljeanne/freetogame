@@ -1,7 +1,7 @@
 import React from "react";
 import cn from "classnames";
 
-import logo from "../../assets/logo-footer.png";
+import logo from "../../assets/img/logo-footer.png";
 
 import styles from "./Footer.module.css";
 

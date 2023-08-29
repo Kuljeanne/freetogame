@@ -3,7 +3,7 @@ import cn from "classnames";
 import { Button } from "antd";
 import { Link } from "react-router-dom";
 
-import logo from "../../assets/freetogame-logo.png";
+import logo from "../../assets/img/freetogame-logo.png";
 
 import styles from "./Header.module.css";
 
