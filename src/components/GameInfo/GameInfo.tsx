@@ -4,7 +4,7 @@ import { ArrowLeftOutlined, RightCircleOutlined } from "@ant-design/icons";
 import cn from "classnames";
 
 import { datePerse } from "../../utils";
-import { IGameDetails } from "../../types";
+import { IGameDetails } from "../../types/types";
 
 import styles from "./GameInfo.module.css";
 

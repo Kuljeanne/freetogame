@@ -1,3 +1,5 @@
+import { PLATFORMS, SORT, TAGS } from "./enum";
+
 export interface IGame {
   id: number;
   title: string;
@@ -22,3 +24,9 @@ export interface IGameDetails extends IGame {
   };
   screenshots: { id: number; image: string }[];
 }
+
+export type FILTER_PARAMS = {
+  platform: PLATFORMS | string;
+  category: TAGS | string;
+  ["sort-by"]: SORT | string;
+};

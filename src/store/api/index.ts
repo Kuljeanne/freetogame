@@ -1,15 +1,17 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-import { IGame, IGameDetails } from "../../types";
-
+import { IGame, IGameDetails } from "../../types/types";
 
 export const gamesApi = createApi({
   reducerPath: "gamesApi",
   baseQuery: fetchBaseQuery({
     baseUrl: process.env.REACT_APP_BASE_URL,
     prepareHeaders: (headers) => {
-      headers.set('X-RapidAPI-Key', process.env.REACT_APP_RAPIDAPI_KEY as string)
-    }
+      headers.set(
+        "X-RapidAPI-Key",
+        process.env.REACT_APP_RAPIDAPI_KEY as string
+      );
+    },
   }),
   endpoints: (build) => ({
     getGamesList: build.query<IGame[], void>({
@@ -25,6 +27,16 @@ export const gamesApi = createApi({
         },
       }),
     }),
+    // getGamesFiltered: build.query<IGameDetails, any>({
+    //   query: () => ({
+    //     url: "/games",
+    //     params: {
+    //       platform='',
+    //       category='',
+    //       ['sort-by']
+    //     },
+    //   }),
+    // }),
   }),
 });
 

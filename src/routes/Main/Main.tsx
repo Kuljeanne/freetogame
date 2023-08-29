@@ -5,33 +5,32 @@ import { Pagination } from "antd";
 import GameCard from "../../components/GameCard";
 import { datePerse } from "../../utils";
 import Filter from "../../components/Filter";
-import { IGame } from "../../types";
+import { FILTER_PARAMS, IGame } from "../../types/types";
 import { useGetGamesListQuery } from "../../store/api";
+import { PLATFORMS, SORT, TAGS } from "../../types/enum";
 
 import styles from "./Main.module.css";
-import { GENRES, PLATFORMS, SORT } from "./mockdata";
-
-const defaultValues = {
-  platform: "All Platforms",
-  genre: "All Genres",
-  sort: "Relevance",
-};
 
 export const Main = () => {
   const { data, isLoading } = useGetGamesListQuery();
 
-  const [filters, setFilters] = useState(defaultValues);
+  const initialFilters: FILTER_PARAMS = {
+    platform: PLATFORMS.AllPlatforms,
+    category: TAGS.AllGenres,
+    "sort-by": SORT.Relevance,
+  };
+  const [filters, setFilters] = useState(initialFilters);
 
   const handlePlatformChange = (value: string) => {
     setFilters({ ...filters, platform: value });
   };
 
   const handleGenreChange = (value: string) => {
-    setFilters({ ...filters, genre: value });
+    setFilters({ ...filters, category: value });
   };
 
   const handleSortChange = (value: string) => {
-    setFilters({ ...filters, sort: value });
+    setFilters({ ...filters, "sort-by": value });
   };
 
   const [page, setPage] = useState(1);
@@ -47,7 +46,6 @@ export const Main = () => {
     const start = (page - 1) * perPage;
     const end = start + perPage;
     setGames(data?.slice(start, end) || []);
-    console.dir(data)
   }, [data, perPage, page]);
 
   return (
@@ -57,42 +55,44 @@ export const Main = () => {
           type="Browse"
           filterName="Platform"
           options={PLATFORMS}
-          defaultValue={defaultValues.platform}
+          defaultValue={initialFilters.platform}
           onChange={handlePlatformChange}
         />
         <Filter
           type="Browse"
           filterName="Genre/Tag"
-          options={GENRES}
-          defaultValue={defaultValues.genre}
+          options={TAGS}
+          defaultValue={initialFilters.category}
           onChange={handleGenreChange}
         />
         <Filter
           type="Sort"
           filterName="Sort By"
           options={SORT}
-          defaultValue={defaultValues.sort}
+          defaultValue={initialFilters["sort-by"]}
           onChange={handleSortChange}
         />
       </div>
-      {!isLoading && <div className={styles.games}>
-        {games.length > 0
-          ? games.map(
-              ({ id, title, genre, publisher, thumbnail, release_date }) => (
-                <GameCard
-                  key={id}
-                  id={id}
-                  title={title}
-                  genre={genre}
-                  imgSrc={thumbnail}
-                  publisher={publisher}
-                  releaseDate={datePerse(release_date)}
-                />
+      {!isLoading && (
+        <div className={styles.games}>
+          {games.length > 0
+            ? games.map(
+                ({ id, title, genre, publisher, thumbnail, release_date }) => (
+                  <GameCard
+                    key={id}
+                    id={id}
+                    title={title}
+                    genre={genre}
+                    imgSrc={thumbnail}
+                    publisher={publisher}
+                    releaseDate={datePerse(release_date)}
+                  />
+                )
               )
-            )
-          : null}
-      </div>}
-      
+            : null}
+        </div>
+      )}
+
       <Pagination
         responsive
         hideOnSinglePage
@@ -100,6 +100,7 @@ export const Main = () => {
         className={styles.pagination}
         pageSizeOptions={[12, 20, 28, 36, 44]}
         defaultPageSize={perPage}
+        defaultCurrent={page}
         total={data?.length}
       />
     </div>

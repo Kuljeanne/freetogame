@@ -1,12 +1,14 @@
 import React from "react";
 import { Select } from "antd";
 
+import { PLATFORMS, SORT, TAGS } from "../../types/enum";
+
 import styles from "./Filter.module.css";
 
 type FilterProos = {
   type: "Browse" | "Sort";
   filterName?: string;
-  options: string[];
+  options: typeof PLATFORMS | typeof TAGS | typeof SORT;
   defaultValue: string;
   onChange: (value: string) => void;
 };
@@ -18,10 +20,12 @@ export const Filter = ({
   options,
   onChange,
 }: FilterProos) => {
-  const validOptions = options.map((opt) => {
-    const option = { value: opt, label: opt };
-    return option;
-  });
+  const validOptions = (Object.keys(options) as (keyof typeof options)[]).map(
+    (key) => {
+      const option = { value: options[key], label: key };
+      return option;
+    }
+  );
 
   return (
     <div>
@@ -38,7 +42,7 @@ export const Filter = ({
             label: `${type} by ${type === "Browse" ? filterName : ""}`,
             disabled: true,
           },
-          ...validOptions
+          ...validOptions,
         ]}
       />
     </div>
