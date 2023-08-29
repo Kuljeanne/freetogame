@@ -6,9 +6,10 @@ import GameCard from "../../components/GameCard";
 import { datePerse } from "../../utils";
 import Filter from "../../components/Filter";
 import { IGame } from "../../types";
+import { useGetGamesListQuery } from "../../store/api";
 
 import styles from "./Main.module.css";
-import { GAMES, GENRES, PLATFORMS, SORT } from "./mockdata";
+import { GENRES, PLATFORMS, SORT } from "./mockdata";
 
 const defaultValues = {
   platform: "All Platforms",
@@ -17,6 +18,8 @@ const defaultValues = {
 };
 
 export const Main = () => {
+  const { data, isLoading } = useGetGamesListQuery();
+
   const [filters, setFilters] = useState(defaultValues);
 
   const handlePlatformChange = (value: string) => {
@@ -30,7 +33,7 @@ export const Main = () => {
   const handleSortChange = (value: string) => {
     setFilters({ ...filters, sort: value });
   };
-  
+
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(12);
   const [games, setGames] = useState<IGame[]>([]);
@@ -43,8 +46,9 @@ export const Main = () => {
   useEffect(() => {
     const start = (page - 1) * perPage;
     const end = start + perPage;
-    setGames(GAMES.slice(start, end));
-  }, [perPage, page]);
+    setGames(data?.slice(start, end) || []);
+    console.dir(data)
+  }, [data, perPage, page]);
 
   return (
     <div className={cn(styles.container, "wrapper")}>
@@ -71,7 +75,7 @@ export const Main = () => {
           onChange={handleSortChange}
         />
       </div>
-      <div className={styles.games}>
+      {!isLoading && <div className={styles.games}>
         {games.length > 0
           ? games.map(
               ({ id, title, genre, publisher, thumbnail, release_date }) => (
@@ -87,7 +91,8 @@ export const Main = () => {
               )
             )
           : null}
-      </div>
+      </div>}
+      
       <Pagination
         responsive
         hideOnSinglePage
@@ -95,7 +100,7 @@ export const Main = () => {
         className={styles.pagination}
         pageSizeOptions={[12, 20, 28, 36, 44]}
         defaultPageSize={perPage}
-        total={GAMES.length}
+        total={data?.length}
       />
     </div>
   );

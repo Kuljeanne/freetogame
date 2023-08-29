@@ -4,26 +4,13 @@ import { useNavigate } from "react-router-dom";
 
 import Footer from "../../components/Footer";
 import GameInfo from "../../components/GameInfo";
+import { useGetGameByIdQuery } from "../../store/api";
 
 import styles from "./GameDetails.module.css";
-import { GAME } from "./mockdata";
 
 export const GameDetails = () => {
-  const {
-    id,
-    title,
-    thumbnail,
-    game_url,
-    short_description,
-    description,
-    screenshots,
-    developer,
-    publisher,
-    release_date,
-    genre,
-    minimum_system_requirements,
-    platform,
-  } = GAME;
+  const { data, isLoading, isError } = useGetGameByIdQuery(1);
+
   const navigate = useNavigate();
 
   const handleBackBtn = () => {
@@ -37,28 +24,34 @@ export const GameDetails = () => {
   return (
     <>
       <div className={cn(styles.container, "wrapper")}>
-        <div
-          className={styles.background}
-          style={{ background: `url(${screenshots[0].image})` }}
-        >
-          <div className={styles.gradient}></div>
-        </div>
-        <GameInfo
-          id={id}
-          title={title}
-          thumbnail={thumbnail}
-          game_url={game_url}
-          short_description={short_description}
-          description={description}
-          screenshots={screenshots}
-          developer={developer}
-          publisher={publisher}
-          release_date={release_date}
-          genre={genre}
-          minimum_system_requirements={minimum_system_requirements}
-          platform={platform}
-          onClick={handleBackBtn}
-        />
+        {isLoading && "идет загрузка"}
+        {isError && "ошибка"}
+        {data && (
+          <>
+            <div
+              className={styles.background}
+              style={{ background: `url(${data.screenshots[0].image})` }}
+            >
+              <div className={styles.gradient}></div>
+            </div>
+            <GameInfo
+              id={data.id}
+              title={data.title}
+              thumbnail={data.thumbnail}
+              game_url={data.game_url}
+              short_description={data.short_description}
+              description={data.description}
+              screenshots={data.screenshots}
+              developer={data.developer}
+              publisher={data.publisher}
+              release_date={data.release_date}
+              genre={data.genre}
+              minimum_system_requirements={data.minimum_system_requirements}
+              platform={data.platform}
+              onClick={handleBackBtn}
+            />
+          </>
+        )}
       </div>
       <Footer />
     </>
