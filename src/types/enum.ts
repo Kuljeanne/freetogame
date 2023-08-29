@@ -1,5 +1,5 @@
 export enum TAGS {
-  AllGenres = " ",
+  "All Genres" = " ",
   MMORPG = "mmorpg",
   Shooter = "shooter",
   strategy = "strategy",
@@ -8,7 +8,7 @@ export enum TAGS {
   Sport = "sports",
   Social = "social",
   Sandbox = "sandbox",
-  OpenWorld = "open-world",
+  "Open World" = "open-world",
   Servival = "survival",
   PVP = "pvp",
   PVE = "pve",
@@ -16,8 +16,8 @@ export enum TAGS {
   Voxel = "voxel",
   Zombie = "zombie",
   TurnBased = "turn-based",
-  FirstPerson = "first-person",
-  ThirdPerson = "third-Person",
+  "First Person" = "first-person",
+  "Third Person" = "third-Person",
   TopDown = "top-down",
   Tank = "tank",
   Space = "space",
@@ -26,7 +26,7 @@ export enum TAGS {
   Superhero = "superhero",
   Permadeath = "permadeath",
   Cadr = "card",
-  BattleRoyale = "battle-royale",
+  "Battle Royale" = "battle-royale",
   MMO = "mmo",
   MMPFPS = "mmofps",
   "3D" = "3d",
@@ -38,16 +38,16 @@ export enum TAGS {
   ActionRPG = "action-rpg",
   Action = "action",
   Military = "military",
-  MaterialArts = "martial-arts",
+  "Material Arts" = "martial-arts",
   Flight = "flight",
   LowSpec = "low-spec",
-  TowerDefence = "tower-defense",
+  "Tower Defence" = "tower-defense",
   Horror = "horror",
   MMORTS = "mmorts",
 }
 
 export enum SORT {
-  ReleaseDate = "release-date",
+  'Release Date' = "release-date",
   Popularity = "popularity",
   Alphabetical = "alphabetical",
   Relevance = "relevance",
@@ -56,5 +56,5 @@ export enum SORT {
 export enum PLATFORMS {
   PC = "pc",
   Browser = "browser",
-  AllPlatforms = "all",
+  'All Platforms' = "all",
 }

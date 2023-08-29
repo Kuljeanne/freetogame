@@ -15,8 +15,8 @@ export const Main = () => {
   const { data, isLoading } = useGetGamesListQuery();
 
   const initialFilters: FILTER_PARAMS = {
-    platform: PLATFORMS.AllPlatforms,
-    category: TAGS.AllGenres,
+    platform: PLATFORMS["All Platforms"],
+    category: TAGS["All Genres"],
     "sort-by": SORT.Relevance,
   };
   const [filters, setFilters] = useState(initialFilters);
