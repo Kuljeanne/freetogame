@@ -8,6 +8,7 @@ import { FILTER_PARAMS } from "../../types/types";
 import { PLATFORMS, SORT, TAGS } from "../../types/enum";
 import PaginatedList from "../../components/PaginatedList";
 import { useFiltersToFetch } from "../../hooks/useFilters";
+import ErrorBlock from "../../components/ErrorBlock";
 
 import styles from "./Main.module.css";
 
@@ -17,8 +18,7 @@ export const Main = () => {
     "sort-by": SORT.Relevance,
   };
   const [filters, setFilters] = useState(initialFilters);
-  const { data, isLoading, isError, setNewFilters } =
-    useFiltersToFetch({});
+  const { data, isLoading, isError, setNewFilters } = useFiltersToFetch({});
 
   const handlePlatformChange = (value: string) => {
     setFilters({ ...filters, platform: value });
@@ -50,7 +50,7 @@ export const Main = () => {
           type="Browse"
           filterName="Genre/Tag"
           options={TAGS}
-          defaultValue={'All genres'}
+          defaultValue={"All genres"}
           loading={isLoading}
           onChange={handleGenreChange}
         />
@@ -87,7 +87,7 @@ export const Main = () => {
             ))}
         </div>
       )}
-      {isError && "ошибка"}
+      {isError && <ErrorBlock />}
       {data && <PaginatedList data={data} />}
     </div>
   );
