@@ -44,6 +44,7 @@ export const Main = () => {
           options={PLATFORMS}
           defaultValue={initialFilters.platform as string}
           loading={isLoading}
+          disabled={isLoading || isError}
           onChange={handlePlatformChange}
         />
         <Filter
@@ -52,6 +53,7 @@ export const Main = () => {
           options={TAGS}
           defaultValue={"All genres"}
           loading={isLoading}
+          disabled={isLoading || isError}
           onChange={handleGenreChange}
         />
         <Filter
@@ -60,20 +62,12 @@ export const Main = () => {
           options={SORT}
           defaultValue={initialFilters["sort-by"] as string}
           loading={isLoading}
+          disabled={isLoading || isError}
           onChange={handleSortChange}
         />
       </div>
       {isLoading && (
-        <div
-          style={{
-            height: "100%",
-            display: "flex",
-            flexWrap: "wrap",
-            gap: "10px",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
+        <div className={styles.skeletons}>
           {Array(8)
             .fill(null)
             .map((load, i) => (
