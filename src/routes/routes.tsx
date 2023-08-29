@@ -13,7 +13,7 @@ export const router = createBrowserRouter([
     element: <App />,
     children: [
       { path: "", element: <Main /> },
-      { path: ":gameName", element: <GameDetails /> },
+      { path: ":id", element: <GameDetails /> },
     ],
   },
   { path: "*", element: <NotFound /> },

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import cn from "classnames";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import Footer from "../../components/Footer";
 import GameInfo from "../../components/GameInfo";
@@ -9,7 +9,9 @@ import { useGetGameByIdQuery } from "../../store/api";
 import styles from "./GameDetails.module.css";
 
 export const GameDetails = () => {
-  const { data, isLoading, isError } = useGetGameByIdQuery(1);
+  const { id } = useParams();
+
+  const { data, isLoading, isError } = useGetGameByIdQuery(Number(id));
 
   const navigate = useNavigate();
 

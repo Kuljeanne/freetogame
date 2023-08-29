@@ -93,36 +93,38 @@ export const GameInfo = ({
             </li>
           </ul>
         </div>
-        <div className={styles.infoBlock}>
-          <h4 className={styles.subtitle}>
-            Minimum System Requirements <span>({platform})</span>
-          </h4>
-          <ul className={cn(styles.list, styles.system)}>
-            <li className={styles.about}>
-              <span>OS </span>
-              {minimum_system_requirements.os}
-            </li>
-            <li className={styles.about}>
-              <span>Processor </span>
-              {minimum_system_requirements.processor}
-            </li>
-            <li className={styles.about}>
-              <span>Memory </span>
-              {minimum_system_requirements.memory}
-            </li>
-            <li className={styles.about}>
-              <span>Graphics </span>
-              {datePerse(minimum_system_requirements.graphics)}
-            </li>
-            <li className={styles.about}>
-              Storage <span>{minimum_system_requirements.storage}</span>
-            </li>
-            <li className={styles.about}>
-              Additional notes{" "}
-              <span>Specifications may change during development</span>
-            </li>
-          </ul>
-        </div>
+        {minimum_system_requirements && (
+          <div className={styles.infoBlock}>
+            <h4 className={styles.subtitle}>
+              Minimum System Requirements <span>({platform})</span>
+            </h4>
+            <ul className={cn(styles.list, styles.system)}>
+              <li className={styles.about}>
+                <span>OS </span>
+                {minimum_system_requirements.os}
+              </li>
+              <li className={styles.about}>
+                <span>Processor </span>
+                {minimum_system_requirements.processor}
+              </li>
+              <li className={styles.about}>
+                <span>Memory </span>
+                {minimum_system_requirements.memory}
+              </li>
+              <li className={styles.about}>
+                <span>Graphics </span>
+                {datePerse(minimum_system_requirements.graphics)}
+              </li>
+              <li className={styles.about}>
+                Storage <span>{minimum_system_requirements.storage}</span>
+              </li>
+              <li className={styles.about}>
+                Additional notes{" "}
+                <span>Specifications may change during development</span>
+              </li>
+            </ul>
+          </div>
+        )}
       </div>
     </div>
   );
