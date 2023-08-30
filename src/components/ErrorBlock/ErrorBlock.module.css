@@ -3,11 +3,14 @@
   background-position: center;
   background-repeat: no-repeat;
   height: 70vh;
+  display: flex;
+  justify-content: center;
 }
 .message {
+  color: #fff;
   display: inline-block;
   padding: 2rem;
   border-radius: 1rem;
   font-size: 3rem;
-  background-color: rgba(30, 59, 100, 0.856);;
+  background-color: rgba(30, 59, 100, 0.662);;
 }

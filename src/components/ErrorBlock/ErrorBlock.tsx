@@ -1,11 +1,15 @@
 import React from "react";
 
 import styles from "./ErrorBlock.module.css";
-
-export const ErrorBlock = () => {
+type ErrorBlockType = {
+  message: string;
+};
+export const ErrorBlock = ({ message }: ErrorBlockType) => {
   return (
     <div className={styles.container}>
-      <p className={styles.message}>Something went wrong, <br/> please try again later...</p>
+      <p className={styles.message}>
+        <span>{message}</span>, please try again later...
+      </p>
     </div>
   );
 };
