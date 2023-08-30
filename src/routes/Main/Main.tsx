@@ -38,7 +38,10 @@ export const Main = () => {
   };
 
   useEffect(() => {
-    dispatch(fetchGames(filters));
+    const promise = dispatch(fetchGames(filters));
+    return () => {
+      promise.abort()
+    };
   }, [dispatch, filters]);
 
   return (

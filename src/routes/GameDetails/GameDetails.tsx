@@ -25,8 +25,11 @@ export const GameDetails = () => {
   };
 
   useEffect(() => {
-    dispatch(fetchGameById(Number(id)));
+    const promise = dispatch(fetchGameById(Number(id)));
     window.scrollTo(0, 0);
+    return ()=> {
+      promise.abort()
+    }
   }, [dispatch, id]);
 
   return (
