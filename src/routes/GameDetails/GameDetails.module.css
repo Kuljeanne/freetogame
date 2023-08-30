@@ -32,3 +32,10 @@
       #292e33 100%
     );
 }
+
+.skeletons {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}

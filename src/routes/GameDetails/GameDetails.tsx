@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import cn from "classnames";
 import { useNavigate, useParams } from "react-router-dom";
+import { Skeleton } from "antd";
 
 import GameInfo from "../../components/GameInfo";
 import ErrorBlock from "../../components/ErrorBlock";
@@ -20,7 +21,7 @@ export const GameDetails = () => {
   const navigate = useNavigate();
 
   const handleBackBtn = () => {
-    navigate(-1);
+    navigate("/games");
   };
 
   useEffect(() => {
@@ -30,7 +31,12 @@ export const GameDetails = () => {
 
   return (
     <div className={cn(styles.container, "wrapper")}>
-      {isLoading && "идет загрузка"}
+      {isLoading && (
+        <div className={styles.skeletons}>
+          <Skeleton.Image active style={{ width: "280px", height: "280px" }} />
+          <Skeleton active paragraph={{ rows: 8 }} />
+        </div>
+      )}
       {error && <ErrorBlock message={error} />}
       {gameDetails && (
         <>
