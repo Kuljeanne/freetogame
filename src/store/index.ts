@@ -1,10 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import gamesReducer from "./reducers/GamesSlice";
 import { gamesApi } from "./api";
 export const store = configureStore({
   reducer: {
-    games: gamesReducer,
     [gamesApi.reducerPath]: gamesApi.reducer,
   },
 

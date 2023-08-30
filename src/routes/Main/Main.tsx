@@ -8,39 +8,41 @@ import { FILTER_PARAMS } from "../../types/types";
 import { PLATFORMS, SORT, TAGS } from "../../types/enum";
 import PaginatedList from "../../components/PaginatedList";
 import ErrorBlock from "../../components/ErrorBlock";
-import { useAppDispatch, useAppSelector } from "../../hooks/redux";
-import { fetchGames } from "../../store/reducers/ActionCreators.ts";
+import { useAppDispatch } from "../../hooks/redux";
+import { useFiltersToFetch } from "../../hooks/useFilters";
+import { gamesApi } from "../../store/api";
 
 import styles from "./Main.module.css";
 
 export const Main = () => {
   const dispatch = useAppDispatch();
-  const { error, gamesList, isLoading } = useAppSelector(
-    (state) => state.games
-  );
 
   const initialFilters: FILTER_PARAMS = {
     platform: PLATFORMS["All Platforms"],
     "sort-by": SORT.Relevance,
   };
   const [filters, setFilters] = useState(initialFilters);
+  const { data, isLoading, isError, setNewFilters } = useFiltersToFetch({});
 
   const handlePlatformChange = (value: string) => {
     setFilters({ ...filters, platform: value });
+    setNewFilters({ ...filters, platform: value });
   };
 
   const handleGenreChange = (value: string) => {
     setFilters({ ...filters, category: value });
+    setNewFilters({ ...filters, category: value });
   };
 
   const handleSortChange = (value: string) => {
     setFilters({ ...filters, "sort-by": value });
+    setNewFilters({ ...filters, "sort-by": value });
   };
 
   useEffect(() => {
-    const promise = dispatch(fetchGames(filters));
+    const result = dispatch(gamesApi.endpoints.getGamesList.initiate(filters));
     return () => {
-      promise.abort()
+      result.abort();
     };
   }, [dispatch, filters]);
 
@@ -53,7 +55,7 @@ export const Main = () => {
           options={PLATFORMS}
           defaultValue={initialFilters.platform as string}
           loading={isLoading}
-          disabled={isLoading || Boolean(error)}
+          disabled={isLoading || isError}
           onChange={handlePlatformChange}
         />
         <Filter
@@ -62,7 +64,7 @@ export const Main = () => {
           options={TAGS}
           defaultValue={"All genres"}
           loading={isLoading}
-          disabled={isLoading || Boolean(error)}
+          disabled={isLoading || isError}
           onChange={handleGenreChange}
         />
         <Filter
@@ -71,7 +73,7 @@ export const Main = () => {
           options={SORT}
           defaultValue={initialFilters["sort-by"] as string}
           loading={isLoading}
-          disabled={isLoading || Boolean(error)}
+          disabled={isLoading || isError}
           onChange={handleSortChange}
         />
       </div>
@@ -90,8 +92,8 @@ export const Main = () => {
             ))}
         </div>
       )}
-      {error && <ErrorBlock message={error} />}
-      {gamesList && <PaginatedList data={gamesList} />}
+      {isError && <ErrorBlock />}
+      {data && <PaginatedList data={data} />}
     </div>
   );
 };
