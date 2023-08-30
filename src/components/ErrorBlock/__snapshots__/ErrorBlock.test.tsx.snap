@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render Error block 1`] = `
+<div
+  class="container"
+  data-testid="error-block"
+>
+  <p
+    class="message"
+  >
+    <span>
+      Something went wrong
+    </span>
+    , please try again later...
+  </p>
+</div>
+`;

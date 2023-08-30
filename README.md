@@ -1,46 +1,81 @@
-# Getting Started with Create React App
+# Тестовое задание для стажёра Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Запуск приложения
 
-## Available Scripts
+*Для запуска приложения необходимо в корневую папку добавить файл .env.local в котором указать url запросов: REACT_APP_BASE_URL и  ключ для заголовка 'X-RapidAPI-Key': REACT_APP_RAPIDAPI_KEY*
 
-In the project directory, you can run:
+Рекомендуется использование пакетного менеджера npm
+Инициализауия проекта 
 
-### `npm start`
+```bash
+npm install
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Запуск локального сервера с проектом по адресу http://localhost:3001/
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```bash
+npm run start
+```
 
-### `npm test`
+Запуск тестов
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+npm run test
+```
 
-### `npm run build`
+Сборка
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+npm run build
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Продуктовыйе требования
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**Главная страница**
 
-### `npm run eject`
+- Показывает игры
+- Игры можно отфильтровать по платформе и жанру (например, шутер)
+- Игры можно отсортировать по дате релиза, популярности и тд
+- Каждая игра в списке содержит:
+  - название
+  - дата релиза (в российском формате)
+  - издатель
+  - жанр
+  - картинка
+- По клику на игру происходит переход на страницу игры
+- На загрузку игр показывать индикатор загрузки
+- Если не получилось получить данные, появляется сообщение об ошибке
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+**Страница игры**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Содержит:
+  - название
+  - дата релиза (в российском формате)
+  - издатель
+  - разработчик
+  - жанр
+  - картинка/постер
+  - карусель скриншотов
+  - системные требования
+- На странице есть кнопка для возврата к списку игр
+- На загрузку игры показывать индикатор загрузки
+- Если не получилось получить данные, появляется сообщение об ошибке
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Выполненые технические требования
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- Адаптивный интерфейс
+- Приложение разработано с помощью React 18+ и Redux / Redux Toolkit
+- Использован Free-To-Play Games API (access API via RapidApi at https://rapidapi.com/digiwalls/api/free-to-play-games-database)
+- Роутинг выполнен с использованием React Router v6
+- Использовался фреймворк UI (Ant Design)
+- Пакетный менеджер npm
+- Приложение запускается по адресу localhost:3001 командой npm run start
+- При переходах по ссылкам страница не перезагружается
+- Если карточка игры была открыта, то она хранится в кэше в течение 5 минут
+- Исходный код решения выложен на Github
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- ИспользовалсяTypeScript
+- Учитено, что список игр может содержать тысячи тайтлов (добавлена пагинация)
+- При неудачном запросе три попытки повторного запроса
+- При переходе со страницы на страницу запросы, относящиеся к старой странице, должны прерываться (отменяться/прекращаться)
+- написаны тесты

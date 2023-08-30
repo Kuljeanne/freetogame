@@ -1,0 +1,28 @@
+.container {
+  padding-top: 8.4rem;
+  padding-bottom: 2.4rem;
+}
+
+.filters {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.skeletons {
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 630px) {
+  .filters {
+    justify-content: center;
+  }
+}
