@@ -8,7 +8,7 @@ export const ErrorBlock = ({
   message = "Something went wrong",
 }: ErrorBlockType) => {
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-testid='error-block'>
       <p className={styles.message}>
         <span>{message}</span>, please try again later...
       </p>

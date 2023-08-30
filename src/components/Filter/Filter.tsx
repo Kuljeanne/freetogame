@@ -32,7 +32,7 @@ export const Filter = ({
   );
 
   return (
-    <div>
+    <div data-testid="filter">
       <span className={styles.filterName}>{filterName}:</span>
       <Select
         className={styles.select}

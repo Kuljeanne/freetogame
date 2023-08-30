@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Pagination } from "antd";
 
 import GameCard from "../GameCard";
-import { datePerse } from "../../utils";
+import { dateParse } from "../../utils";
 import { IGame } from "../../types/types";
 
 import styles from "./PaginatedList.module.css";
@@ -40,7 +40,7 @@ export const PaginatedList = ({ data }:IPaginatedList) => {
                   genre={genre}
                   imgSrc={thumbnail}
                   publisher={publisher}
-                  releaseDate={datePerse(release_date)}
+                  releaseDate={dateParse(release_date)}
                 />
               )
             )
