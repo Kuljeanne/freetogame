@@ -5,8 +5,8 @@ import { Skeleton } from "antd";
 
 import GameInfo from "../../components/GameInfo";
 import ErrorBlock from "../../components/ErrorBlock";
-import { useAppDispatch, useAppSelector } from "../../hooks/redux";
-import { fetchGameById } from "../../store/reducers/ActionCreators.ts";
+import { useAppDispatch } from "../../hooks/redux";
+import { gamesApi, useGetGameByIdQuery } from "../../store/api";
 
 import styles from "./GameDetails.module.css";
 
@@ -14,9 +14,11 @@ export const GameDetails = () => {
   const { id } = useParams();
   const dispatch = useAppDispatch();
 
-  const { gameDetails, error, isLoading } = useAppSelector(
-    (state) => state.game
-  );
+  const {
+    data: gameDetails,
+    isLoading,
+    isError,
+  } = useGetGameByIdQuery(Number(id));
 
   const navigate = useNavigate();
 
@@ -25,11 +27,13 @@ export const GameDetails = () => {
   };
 
   useEffect(() => {
-    const promise = dispatch(fetchGameById(Number(id)));
     window.scrollTo(0, 0);
-    return ()=> {
-      promise.abort()
-    }
+    const result = dispatch(
+      gamesApi.endpoints.getGameById.initiate(Number(id))
+    );
+    return () => {
+      result.abort();
+    };
   }, [dispatch, id]);
 
   return (
@@ -40,7 +44,7 @@ export const GameDetails = () => {
           <Skeleton active paragraph={{ rows: 8 }} />
         </div>
       )}
-      {error && <ErrorBlock message={error} />}
+      {isError && <ErrorBlock />}
       {gameDetails && (
         <>
           {gameDetails.screenshots.length > 0 && (
