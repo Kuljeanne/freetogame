@@ -3,7 +3,7 @@ import { Button, Carousel } from "antd";
 import { ArrowLeftOutlined, RightCircleOutlined } from "@ant-design/icons";
 import cn from "classnames";
 
-import { datePerse } from "../../utils";
+import { dateParse } from "../../utils";
 import { IGameDetails } from "../../types/types";
 
 import styles from "./GameInfo.module.css";
@@ -81,7 +81,7 @@ export const GameInfo = ({
             </li>
             <li className={styles.about}>
               <span>Release Date </span>
-              {datePerse(release_date)}
+              {dateParse(release_date)}
             </li>
             <li className={styles.about}>
               <span>Genre </span>
@@ -113,7 +113,7 @@ export const GameInfo = ({
               </li>
               <li className={styles.about}>
                 <span>Graphics </span>
-                {datePerse(minimum_system_requirements.graphics)}
+                {dateParse(minimum_system_requirements.graphics)}
               </li>
               <li className={styles.about}>
                 Storage <span>{minimum_system_requirements.storage}</span>
