@@ -1,24 +1,20 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import cn from "classnames";
 import { useNavigate, useParams } from "react-router-dom";
 import { Skeleton } from "antd";
 
 import GameInfo from "../../components/GameInfo";
 import ErrorBlock from "../../components/ErrorBlock";
-import { useAppDispatch } from "../../hooks/redux";
-import { gamesApi, useGetGameByIdQuery } from "../../store/api";
+import { useLazyGetGameByIdQuery } from "../../store/api";
+import { IGameDetails } from "../../types/types";
 
 import styles from "./GameDetails.module.css";
 
 export const GameDetails = () => {
   const { id } = useParams();
-  const dispatch = useAppDispatch();
+  const [gameDetails, setGameDetails] = useState<IGameDetails | null>(null);
 
-  const {
-    data: gameDetails,
-    isLoading,
-    isError,
-  } = useGetGameByIdQuery(Number(id));
+  const [trigger, { isLoading, isError }] = useLazyGetGameByIdQuery();
 
   const navigate = useNavigate();
 
@@ -28,13 +24,14 @@ export const GameDetails = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    const result = dispatch(
-      gamesApi.endpoints.getGameById.initiate(Number(id))
-    );
+    trigger(Number(id)).then((data) => {
+      if (data?.data) setGameDetails(data.data);
+    });
+
     return () => {
-      result.abort();
+      trigger(Number(id)).abort();
     };
-  }, [dispatch, id]);
+  }, [id, trigger]);
 
   return (
     <div className={cn(styles.container, "wrapper")}>

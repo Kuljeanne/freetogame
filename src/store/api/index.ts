@@ -2,17 +2,13 @@ import { createApi, fetchBaseQuery, retry } from "@reduxjs/toolkit/query/react";
 
 import { FILTER_PARAMS, IGame, IGameDetails } from "../../types/types";
 
+const BASE_URL = 'http://localhost:3000/api'
+
 export const gamesApi = createApi({
   reducerPath: "gamesApi",
   baseQuery: retry(
     fetchBaseQuery({
-      baseUrl: process.env.REACT_APP_BASE_URL,
-      prepareHeaders: (headers) => {
-        headers.set(
-          "X-RapidAPI-Key",
-          process.env.REACT_APP_RAPIDAPI_KEY as string
-        );
-      },
+      baseUrl: BASE_URL,
     }),
     {
       maxRetries: 3,
@@ -28,13 +24,10 @@ export const gamesApi = createApi({
     }),
     getGameById: build.query<IGameDetails, number>({
       query: (id) => ({
-        url: "/game",
-        params: {
-          id,
-        },
+        url: `/game/${id}`,
       }),
     }),
   }),
 });
 
-export const { useGetGameByIdQuery, useGetGamesListQuery } = gamesApi;
+export const { useGetGameByIdQuery, useGetGamesListQuery, useLazyGetGameByIdQuery } = gamesApi;

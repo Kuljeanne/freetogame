@@ -1,50 +1,46 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import cn from "classnames";
 import { Skeleton } from "antd";
 import { DotChartOutlined } from "@ant-design/icons";
 
 import Filter from "../../components/Filter";
-import { FILTER_PARAMS } from "../../types/types";
 import { PLATFORMS, SORT, TAGS } from "../../types/enum";
 import PaginatedList from "../../components/PaginatedList";
 import ErrorBlock from "../../components/ErrorBlock";
-import { useAppDispatch } from "../../hooks/redux";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { useFiltersToFetch } from "../../hooks/useFilters";
-import { gamesApi } from "../../store/api";
+import {
+  setCategory,
+  setPlatform,
+  setSort,
+} from "../../store/reducers/Filters.Slice";
 
 import styles from "./Main.module.css";
 
 export const Main = () => {
   const dispatch = useAppDispatch();
 
-  const initialFilters: FILTER_PARAMS = {
-    platform: PLATFORMS["All Platforms"],
-    "sort-by": SORT.Relevance,
-  };
-  const [filters, setFilters] = useState(initialFilters);
-  const { data, isLoading, isError, setNewFilters } = useFiltersToFetch({});
+  const filters = useAppSelector((state) => state.filters);
+  const { data, isLoading, isError, setNewFilters } =
+    useFiltersToFetch(filters);
 
   const handlePlatformChange = (value: string) => {
-    setFilters({ ...filters, platform: value });
-    setNewFilters({ ...filters, platform: value });
+    const newFilters = { ...filters, platform: value };
+    dispatch(setPlatform(value));
+    setNewFilters(newFilters);
   };
 
   const handleGenreChange = (value: string) => {
-    setFilters({ ...filters, category: value });
-    setNewFilters({ ...filters, category: value });
+    const newFilters = { ...filters, category: value };
+    dispatch(setCategory(value));
+    setNewFilters(newFilters);
   };
 
   const handleSortChange = (value: string) => {
-    setFilters({ ...filters, "sort-by": value });
-    setNewFilters({ ...filters, "sort-by": value });
+    const newFilters = { ...filters, "sort-by": value };
+    dispatch(setSort(value));
+    setNewFilters(newFilters);
   };
-
-  useEffect(() => {
-    const result = dispatch(gamesApi.endpoints.getGamesList.initiate(filters));
-    return () => {
-      result.abort();
-    };
-  }, [dispatch, filters]);
 
   return (
     <div className={cn(styles.container, "wrapper")}>
@@ -53,7 +49,7 @@ export const Main = () => {
           type="Browse"
           filterName="Platform"
           options={PLATFORMS}
-          defaultValue={initialFilters.platform as string}
+          defaultValue={filters.platform as string}
           loading={isLoading}
           disabled={isLoading || isError}
           onChange={handlePlatformChange}
@@ -62,7 +58,7 @@ export const Main = () => {
           type="Browse"
           filterName="Genre/Tag"
           options={TAGS}
-          defaultValue={"All genres"}
+          defaultValue={filters.category || "All genres"}
           loading={isLoading}
           disabled={isLoading || isError}
           onChange={handleGenreChange}
@@ -71,7 +67,7 @@ export const Main = () => {
           type="Sort"
           filterName="Sort By"
           options={SORT}
-          defaultValue={initialFilters["sort-by"] as string}
+          defaultValue={filters["sort-by"] as string}
           loading={isLoading}
           disabled={isLoading || isError}
           onChange={handleSortChange}
@@ -93,7 +89,7 @@ export const Main = () => {
         </div>
       )}
       {isError && <ErrorBlock />}
-      {data && <PaginatedList data={data} />}
+      {!isError && data && <PaginatedList data={data} />}
     </div>
   );
 };

@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 import { gamesApi } from "./api";
+import FiltersReducer from "./reducers/Filters.Slice";
 export const store = configureStore({
   reducer: {
     [gamesApi.reducerPath]: gamesApi.reducer,
+    filters: FiltersReducer,
   },
 
   middleware: (getDefaultMiddleware) =>
