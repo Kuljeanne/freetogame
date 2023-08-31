@@ -24,9 +24,8 @@ export const GameDetails = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    trigger(Number(id)).then((data) => {
-      if (data?.data) setGameDetails(data.data);
-    });
+    trigger(Number(id)).unwrap().then((data) => setGameDetails(data)
+    ).catch(console.log);
 
     return () => {
       trigger(Number(id)).abort();

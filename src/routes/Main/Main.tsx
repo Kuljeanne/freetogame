@@ -40,7 +40,7 @@ export const Main = () => {
   useEffect(() => {
     trigger(filters)
       .unwrap()
-      .then((games) => setData(games));
+      .then((games) => setData(games)).catch(console.log);
       return ()=> trigger(filters).abort()
   }, [filters, trigger]);
 
