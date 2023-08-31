@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import cn from "classnames";
 import { Skeleton } from "antd";
 import { DotChartOutlined } from "@ant-design/icons";
@@ -8,12 +8,13 @@ import { PLATFORMS, SORT, TAGS } from "../../types/enum";
 import PaginatedList from "../../components/PaginatedList";
 import ErrorBlock from "../../components/ErrorBlock";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
-import { useFiltersToFetch } from "../../hooks/useFilters";
 import {
   setCategory,
   setPlatform,
-  setSort,
+  setSort
 } from "../../store/reducers/Filters.Slice";
+import { useLazyGetGamesListQuery } from "../../store/api";
+import { IGame } from "../../types/types";
 
 import styles from "./Main.module.css";
 
@@ -21,26 +22,27 @@ export const Main = () => {
   const dispatch = useAppDispatch();
 
   const filters = useAppSelector((state) => state.filters);
-  const { data, isLoading, isError, setNewFilters } =
-    useFiltersToFetch(filters);
+  const [data, setData] = useState<IGame[] | null>(null);
+  const [trigger, { isError, isLoading }] = useLazyGetGamesListQuery();
 
   const handlePlatformChange = (value: string) => {
-    const newFilters = { ...filters, platform: value };
     dispatch(setPlatform(value));
-    setNewFilters(newFilters);
   };
 
   const handleGenreChange = (value: string) => {
-    const newFilters = { ...filters, category: value };
     dispatch(setCategory(value));
-    setNewFilters(newFilters);
   };
 
   const handleSortChange = (value: string) => {
-    const newFilters = { ...filters, "sort-by": value };
     dispatch(setSort(value));
-    setNewFilters(newFilters);
   };
+
+  useEffect(() => {
+    trigger(filters)
+      .unwrap()
+      .then((games) => setData(games));
+      return ()=> trigger(filters).abort()
+  }, [filters, trigger]);
 
   return (
     <div className={cn(styles.container, "wrapper")}>
